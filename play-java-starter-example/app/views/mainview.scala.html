@@ -1,3 +1,4 @@
+@(name : String)
 <!DOCTYPE html>
 <html>
 	<head>
@@ -5,13 +6,12 @@
 	</head>
 	<body>
 	
-	<h1> Welcome this is the website </h1>
+	<h1> @name </h1>
 
-	<form action="req" method="GET">
+	<form action="viewtweets" method="GET">
     <input type="text" name="myName" /> 
     <input type="submit" value="Search Tweets!" />
 	</form>
 	
 	
 	</body>
-
