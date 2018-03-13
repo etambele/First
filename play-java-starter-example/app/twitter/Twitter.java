@@ -12,13 +12,10 @@ import twitter4j.TwitterFactory;
 import twitter4j.User;
 import twitter4j.conf.ConfigurationBuilder;
 
+
 /**
  * This is a new class
- * @author Emmanuel
- *
- */
-/**
- * @author Emmanuel Ambele
+ * @author Emmanuel Ambele, Shruthi Ramamurthy
  * 
  * 
  *This class contains the Twitter4j API to handle request-performing the search on the tweets.
@@ -30,6 +27,7 @@ public class Twitter {
 	/**
 	* Constructor method- Assigns the keyword passed for search to a string variable.
 	* @param SearchString
+	* @author Emmanuel Ambele, Shruthi Ramamurthy
 	*/
 	
 	public Twitter(String SearchString) {
@@ -42,6 +40,7 @@ public class Twitter {
  * Accepts the data/keyword and search for a tweet that matches that keyword.
  * @return tweets as FutureResult.
  * @throws TwitterException
+ * @author Emmanuel Ambele, Shruthi Ramamurthy
  */
 	@SuppressWarnings("unchecked")
 	public Future<QueryResult> getTweets() throws TwitterException  {
@@ -79,6 +78,7 @@ public class Twitter {
 	 * Contains the basic details about that person, such as Followers Count, Friends Count, Location, Description and ScreenName.
 	 * @return FutureProfile
 	 * @throws TwitterException
+	 * @author Emmanuel Ambele, Shruthi Ramamurthy
 	 */
 	
 	public Future<String>  getProfile() throws TwitterException  {
@@ -117,6 +117,7 @@ public class Twitter {
 	 * This getDetails() fetches the Timeline of the user displaying their recent ten tweets.
 	 * @return futureStatus
 	 * @throws TwitterException
+	 * @author Emmanuel Ambele, Shruthi Ramamurthy
 	 */		
 		public CompletableFuture<List<Status>> getDetails() throws TwitterException{
 			ConfigurationBuilder cb = new ConfigurationBuilder();

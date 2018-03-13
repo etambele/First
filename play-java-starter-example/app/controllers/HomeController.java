@@ -28,8 +28,11 @@ import twitter4j.User;
 import twitter4j.conf.ConfigurationBuilder;
 
 /**
+ * 
  * This controller contains an action to handle HTTP requests
  * to the application's home page.
+ * 
+ * @author Emmanuel Ambele, Shruthi Ramamurthy
  */
 public class HomeController extends Controller {
 
@@ -38,24 +41,37 @@ public class HomeController extends Controller {
      * The configuration in the <code>routes</code> file means that
      * this method will be called when the application receives a
      * <code>GET</code> request with a path of <code>/</code>.
+     * 
+     * @author Emmanuel Ambele, Shruthi Ramamurthy
      */
 	
     public Result index() {
         return ok(index.render("Your new application is ready."));
     }
     
+  
     /**
-     * 
-     * @author Shruthi Ramamurthy
-     * @param
-     * 
-     */
+	 * This Search() renders the mainview.html
+	 * Contains the text Tweet Analytics displayed on the homepage
+	 * @return 
+	 * @throws
+	 * @author Emmanuel Ambele, Shruthi Ramamurthy
+	 */
     public Result Search() {
     		
         return ok(mainview.render("Tweet Analytics")); 
        
     } 
     
+    /**
+	 * This SearchResults() renders the viewtweets.html
+	 * contains logic for splitting the search keyword and searching for tweets related to each keyword using the get_links and 
+	 * get_results
+	 * @param keys
+	 * @return 
+	 * @throws TwitterException, TnterruptedException, ExecutionException
+	 * @author Emmanuel Ambele, Shruthi Ramamurthy
+	 */    
     public Result SearchResults(String keys) throws TwitterException , InterruptedException ,ExecutionException{
     
     	List<String> links_temp = new ArrayList<String>();
@@ -75,6 +91,19 @@ public class HomeController extends Controller {
         return ok(viewtweets.render(result,links)); 
     }
     
+  /**
+   * 
+   * This profile() renders the viewtweets.html
+   * contains logic used to get the users profile details by twitter handle
+   * @return 
+   * @param name
+   * @throws TwitterException, TnterruptedException, ExecutionException
+   * @author Emmanuel Ambele, Shruthi Ramamurthy  
+   * @throws TwitterException
+   * @throws InterruptedException
+   * @throws ExecutionException
+   */
+    
   public Result profile(String name) throws TwitterException ,InterruptedException ,ExecutionException{    	
     	
     	String Profile = getProfile(name);
@@ -82,7 +111,20 @@ public class HomeController extends Controller {
     	Thread.sleep(1000L);
 		return ok(profile.render(Profile, Tweets));
 	}
-
+  
+  /**
+   * 
+   * This getprofile() renders the viewtweets.html
+   * contains logic used to get the users profile details by twitter handle
+   * @return 
+   * @param key
+   * @throws TwitterException, TnterruptedException, ExecutionException
+   * @author Emmanuel Ambele, Shruthi Ramamurthy  
+   * @throws TwitterException
+   * @throws InterruptedException
+   * @throws ExecutionException
+   */
+ 
     public String getProfile (String Key)throws TwitterException, InterruptedException  {
     	Twitter tweet = new Twitter(Key);
     	
@@ -98,7 +140,19 @@ public class HomeController extends Controller {
        
 		return null;
     }
-    
+    /**
+     * 
+     * This getDetails() renders the viewtweets.html
+     * contains logic used to get the users profile details by twitter handle
+     * @return 
+     * @param name
+     * @throws TwitterException, TnterruptedException, ExecutionException
+     * @author Emmanuel Ambele, Shruthi Ramamurthy  
+     * @throws TwitterException
+     * @throws InterruptedException
+     * @throws ExecutionException
+     */
+
     public List<String> getDetails (String Key)throws TwitterException, InterruptedException  {
     	
     	Twitter tweet = new Twitter(Key);
@@ -112,6 +166,20 @@ public class HomeController extends Controller {
     	return res;
     	
      }
+    
+    /**
+    
+     * @param key
+     * @param a    
+   * This get_results() renders the viewtweets.html
+   * contains logic used to get the users profile details by twitter handle
+   * @return 
+   * @param name
+   * @author Emmanuel Ambele, Shruthi Ramamurthy  
+   * @throws TwitterException
+   * @throws InterruptedException
+   * @throws ExecutionException
+   */
     
     
     public List<String> get_results(String key , List<String> a) throws TwitterException, InterruptedException  {
@@ -129,6 +197,20 @@ public class HomeController extends Controller {
 		
 	     return a;
     }
+    
+    /**
+     * 
+     * This get_links() renders the viewtweets.html
+     * contains logic used to get the users profile details by twitter handle
+     * @return 
+     * @param key
+     * @param a
+     * @author Emmanuel Ambele, Shruthi Ramamurthy  
+     * @throws TwitterException
+     * @throws InterruptedException
+     * @throws ExecutionException
+     */
+          
     
 	public List<String> get_links(String key , List<String> a) throws TwitterException, InterruptedException, ExecutionException  {
     	
